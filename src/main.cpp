@@ -4,6 +4,7 @@
 #include <WiFi.h>
 
 RTC_DATA_ATTR int bootCounter = 0; // This var ist stored in ulp/rtc data
+RTC_DATA_ATTR time_t allExecTime = 0; // This var ist stored in ulp/rtc data
 
 WiFiClient wifiClient;
 PubSubClient client(wifiClient);
@@ -59,9 +60,12 @@ void loop()
   {
     Serial.println("MQTT server connected.");
 
-    char buffer[32];
+    char buffer[64];
     time_t endTime = millis();
-    sprintf(buffer, "%d %lums", bootCounter++, endTime - startTime);
+    bootCounter++;
+    allExecTime += endTime - startTime;
+    sprintf(buffer, "%d %lums %lums", bootCounter, endTime - startTime, 
+       allExecTime / bootCounter );
 
     client.publish(MQTT_OUTTOPIC, buffer, true);
     delay(100);
