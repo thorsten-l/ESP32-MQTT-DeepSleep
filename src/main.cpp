@@ -14,7 +14,7 @@ void setup()
 {
   Serial.begin(115200);
 
-#ifdef DEBUG
+#ifdef DEBUG_MSG
   Serial.println("WiFi config.");
 #endif
 
@@ -28,7 +28,7 @@ void setup()
     IPAddress(IP_DNS1)
   );
 
-#ifdef DEBUG
+#ifdef DEBUG_MSG
   Serial.println("WiFi begin.");
 #endif
 
@@ -36,7 +36,7 @@ void setup()
 
   while (WiFi.status() != WL_CONNECTED)
   {
-#ifdef DEBUG
+#ifdef DEBUG_MSG
     Serial.print('.');
 #endif
     delay(250);
@@ -47,12 +47,12 @@ void setup()
     }
   }
 
-#ifdef DEBUG
+#ifdef DEBUG_MSG
   Serial.println("\nWiFi connected.");
 #endif
 
   client.setServer(MQTT_HOST, MQTT_PORT);
-#ifdef DEBUG
+#ifdef DEBUG_MSG
   Serial.println("Connecting to MQTT server.");
 #endif
 }
@@ -68,7 +68,7 @@ void loop()
 
   if (client.connected())
   {
-#ifdef DEBUG
+#ifdef DEBUG_MSG
     Serial.println("MQTT server connected.");
 #endif
     char buffer[64];
@@ -80,7 +80,7 @@ void loop()
 
     client.publish(MQTT_OUTTOPIC, buffer, true);
     delay(100);
-#ifdef DEBUG
+#ifdef DEBUG_MSG
     Serial.printf("%s : value send.\n", buffer);
 #endif
 

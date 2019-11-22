@@ -1,7 +1,7 @@
 #ifndef __APP_HPP__
 #define __APP_HPP__
 
-#undef DEBUG
+#undef DEBUG_MSG
 
 #define WIFI_SSID "<your wifi ssid>"
 #define WIFI_PASS "<your wifi password>"
