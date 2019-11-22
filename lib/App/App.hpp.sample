@@ -1,0 +1,28 @@
+#ifndef __APP_HPP__
+#define __APP_HPP__
+
+#define WIFI_SSID "<your wifi ssid>"
+#define WIFI_PASS "<your wifi password>"
+
+// your static ip configuration
+#define IP_HOST    { 192, 168,   1, 10 }
+#define IP_GATEWAY { 192, 168,   1,  1 }
+#define IP_NETMASK { 255, 255, 255,  0 }
+#define IP_DNS1    { 192, 168,   1,  1 }
+
+#define MQTT_CLIENTID "esp32-mqtt-deepsleep"
+#define MQTT_HOST "<your mqtt host ip>"
+#define MQTT_PORT 1883
+
+#undef MQTT_USEAUTH
+#define MQTT_USER "<your mqtt user>"
+#define MQTT_PASSWORD "<your mqtt password>"
+
+#define MQTT_OUTTOPIC "esp32-mqtt-deepsleep/out"
+
+#define CONNECTION_TIMEOUT 5000
+
+#define uS_TO_S_FACTOR 1000000
+#define TIME_TO_SLEEP 10
+
+#endif
